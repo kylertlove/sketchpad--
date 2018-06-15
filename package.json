@@ -1,0 +1,28 @@
+{
+    "name": "sketchpad--",
+    "version": "1.0.0",
+    "description": "HTML5 Canvas Drawing Service",
+    "main": "index.js",
+    "scripts": {
+        "tsc": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kylertlove/sketchpad--.git"
+    },
+    "keywords": [
+        "canvas",
+        "typescript",
+        "javascript",
+        "web"
+    ],
+    "author": "Kyler Love",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kylertlove/sketchpad--/issues"
+    },
+    "homepage": "https://github.com/kylertlove/sketchpad--#readme",
+    "dependencies": {
+        "typescript": "^2.9.2"
+    }
+}
