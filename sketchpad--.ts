@@ -8,6 +8,7 @@ class Sketchpad {
     mousePos = { x: 0, y: 0 };
     lastPos = this.mousePos;
     canvas: CanvasRenderingContext2D;
+    lineWidth: number = 5;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas.getContext('2d');
@@ -16,26 +17,25 @@ class Sketchpad {
         this.buildListeners();
     }
 
-    Start(){
+    Start() {
         this.loop();
     }
 
     loop = () => {
         window.requestAnimationFrame(this.loop);
         this.draw();
-      }
+    }
 
-      draw() {
-        this.canvas.lineWidth = 5;
+    draw() {
+        this.canvas.lineWidth = this.lineWidth;
         this.canvas.strokeStyle = this.color;
         if (this.isDrawing) {
-          this.canvas.moveTo(this.lastPos.x, this.lastPos.y);
-          this.canvas.lineTo(this.mousePos.x, this.mousePos.y);
-          this.canvas.stroke();
-          this.lastPos = this.mousePos;
+            this.canvas.moveTo(this.lastPos.x, this.lastPos.y);
+            this.canvas.lineTo(this.mousePos.x, this.mousePos.y);
+            this.canvas.stroke();
+            this.lastPos = this.mousePos;
         }
-      }
-
+    }
 
     getMousePos(event: MouseEvent) {
         let rect = this.canvas.canvas.getBoundingClientRect();
@@ -77,6 +77,9 @@ class Sketchpad {
             this.lastPos = this.getMousePos(e);
         });
         this.canvas.canvas.addEventListener('mouseup', () => {
+            this.isDrawing = false;
+        });
+        document.body.addEventListener('mouseup', (e:MouseEvent) => {
             this.isDrawing = false;
         });
         this.canvas.canvas.addEventListener('mousemove', (e: MouseEvent) => {

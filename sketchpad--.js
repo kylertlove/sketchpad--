@@ -5,6 +5,7 @@ var Sketchpad = /** @class */ (function () {
         this.textColor = 'white';
         this.mousePos = { x: 0, y: 0 };
         this.lastPos = this.mousePos;
+        this.lineWidth = 5;
         this.loop = function () {
             window.requestAnimationFrame(_this.loop);
             _this.draw();
@@ -18,7 +19,7 @@ var Sketchpad = /** @class */ (function () {
         this.loop();
     };
     Sketchpad.prototype.draw = function () {
-        this.canvas.lineWidth = 5;
+        this.canvas.lineWidth = this.lineWidth;
         this.canvas.strokeStyle = this.color;
         if (this.isDrawing) {
             this.canvas.moveTo(this.lastPos.x, this.lastPos.y);
@@ -66,6 +67,9 @@ var Sketchpad = /** @class */ (function () {
             _this.lastPos = _this.getMousePos(e);
         });
         this.canvas.canvas.addEventListener('mouseup', function () {
+            _this.isDrawing = false;
+        });
+        document.body.addEventListener('mouseup', function (e) {
             _this.isDrawing = false;
         });
         this.canvas.canvas.addEventListener('mousemove', function (e) {
